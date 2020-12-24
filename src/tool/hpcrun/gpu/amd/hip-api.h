@@ -57,12 +57,11 @@
 
 
 //*****************************************************************************
-// nvidia includes
+// hip includes
 //*****************************************************************************
 
-#include <roctracer_hip.h>
 
-
+typedef struct hipCtx_t* hipCtx_t_ptr;
 
 //*****************************************************************************
 // interface operations
@@ -94,7 +93,7 @@ hip_bind
 int
 hip_context
 (
- hipCtx_t *ctx
+  hipCtx_t_ptr ctx
 );
 
 // returns 0 on success

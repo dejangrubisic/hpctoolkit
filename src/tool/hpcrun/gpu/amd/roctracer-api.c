@@ -450,13 +450,11 @@ roctracer_subscriber_callback
     uint64_t cpu_submit_time = hpcrun_nanotime();
 
     PRINT("\nACTIVITY_API_PHASE_ENTER -----------------| cct = %p \n", api_node);
-    int (*hip_gpu_sync_ptr)(void) = hip_dev_sync;
     gpu_monitors_apply(api_node, gpu_monitor_type_enter);
 
     gpu_correlation_channel_produce(correlation_id, &gpu_op_ccts, cpu_submit_time);
   }else if (data->phase == ACTIVITY_API_PHASE_EXIT){
     PRINT("\nACTIVITY_API_PHASE_EXIT -----------------| \n");
-    int (*hip_gpu_sync_ptr)(void) = hip_dev_sync;
     gpu_monitors_apply(NULL, gpu_monitor_type_exit);
 
   }else{
@@ -538,7 +536,10 @@ roctracer_bind
   // More details: https://github.com/ROCm-Developer-Tools/roctracer/issues/22
   setenv("HSA_ENABLE_INTERRUPT", "0", 1);
 
-  rocm_debug_api_bind();
+  if (rocm_debug_api_bind() < 0) {
+    EEMSG("hpcrun: unable to bind to AMD debug library %s\n", dlerror());        
+    return -1;
+  };
 
 #ifndef HPCRUN_STATIC_LINK
   // dynamic libraries only availabile in non-static case

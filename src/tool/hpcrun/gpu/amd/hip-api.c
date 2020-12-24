@@ -60,8 +60,6 @@
 #include <stdio.h>
 #include <string.h>    // memset
 
-#include <roctracer_hip.h>
-
 
 
 //*****************************************************************************
@@ -70,6 +68,8 @@
 
 #include <hpcrun/sample-sources/libdl.h>
 #include <hpcrun/messages/messages.h>
+
+#include <roctracer_hip.h>
 
 #include "hip-api.h"
 
@@ -182,7 +182,7 @@ void
 int
 hip_context
 (
- hipCtx_t *ctx
+ hipCtx_t_ptr ctx
 )
 {
 #ifndef HPCRUN_STATIC_LINK

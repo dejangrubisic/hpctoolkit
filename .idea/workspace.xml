@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="41205ea9-9dd9-4426-8223-c5fef2b228a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/ar-lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aclocal.m4" beforeDir="false" afterPath="$PROJECT_DIR$/aclocal.m4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/ltmain.sh" beforeDir="false" afterPath="$PROJECT_DIR$/config/ltmain.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configure" beforeDir="false" afterPath="$PROJECT_DIR$/configure" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configure.ac" beforeDir="false" afterPath="$PROJECT_DIR$/configure.ac" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/man/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/doc/man/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/manual/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/doc/manual/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/texinfo/spack-issues.texi" beforeDir="false" afterPath="$PROJECT_DIR$/doc/texinfo/spack-issues.texi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/www/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/doc/www/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/www/index.html.in" beforeDir="false" afterPath="$PROJECT_DIR$/doc/www/index.html.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/www/spack-issues.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/www/spack-issues.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spack/packages.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/spack/packages.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spack/spack-issues.txt" beforeDir="false" afterPath="$PROJECT_DIR$/spack/spack-issues.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extern/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/extern/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extern/libunwind/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/extern/libunwind/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/extern/lzma/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/extern/lzma/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/analysis/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/analysis/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/banal/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/banal/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/binutils/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/binutils/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/isa/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/isa/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/prof-lean/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/prof-lean/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/prof/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/prof/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/profxml/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/profxml/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/stubs-gcc_s/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/stubs-gcc_s/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/support-lean/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/support-lean/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/support/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/support/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/xml/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/xml/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcfnbounds/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcfnbounds/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcfnbounds2/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcfnbounds2/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpclump/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpclump/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcprof-flat/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcprof-flat/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcprof-mpi/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcprof-mpi/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcprof/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcprof/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcproftt/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcproftt/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun-flat/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun-flat/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/Makefile.am" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/Makefile.am" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/audit/auditor.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/audit/auditor.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/audit/fake-auditor.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/audit/fake-auditor.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/env.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/env.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/env.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/env.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/hip-api.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/hip-api.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/hip-api.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/hip-api.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/rocm-debug-api.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/rocm-debug-api.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/roctracer-api.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/gpu/amd/roctracer-api.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/sample-sources/papi-c-rocm.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/sample-sources/papi-c-rocm.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/sample-sources/ss-list.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/sample-sources/ss-list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/scripts/hpclink.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/scripts/hpclink.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/scripts/hpcrun.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/scripts/hpcrun.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/start-stop.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/start-stop.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/trace.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/trace.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcrun/utilities/bgq-cnk/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcrun/utilities/bgq-cnk/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcserver/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcserver/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcserver/mpi/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcserver/mpi/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpcstruct/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpcstruct/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/hpctracedump/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/hpctracedump/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/misc/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/misc/Makefile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool/xprof/Makefile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool/xprof/Makefile.in" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1m2jP8IsKJ0kJTCkGTHMzyT5iDv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41205ea9-9dd9-4426-8223-c5fef2b228a6" name="Default Changelist" comment="" />
+      <created>1608698552500</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608698552500</updated>
+      <workItem from="1608698553689" duration="15779000" />
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/tool/hpcrun/main.c</url>
+          <line>925</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -81,7 +81,7 @@ SAMPLE_SOURCE_DECL_MACRO(retcnt)
 #endif
 
 //#ifdef HPCRUN_SS_PAPI_C_CUPTI
-SAMPLE_SOURCE_DECL_MACRO(papi_c_cupti)
+//SAMPLE_SOURCE_DECL_MACRO(papi_c_rocm)
 //#endif
 
 #ifdef HPCRUN_SS_NVIDIA
