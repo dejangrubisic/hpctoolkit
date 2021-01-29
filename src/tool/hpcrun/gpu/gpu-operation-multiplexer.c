@@ -110,7 +110,7 @@ gpu_operation_record
   gpu_operation_channel_set_process(current_operation_channels_count);
   gpu_operation_channel_set_await(current_operation_channels_count);
 
-  gpu_trace_fini(NULL);
+  gpu_trace_fini(NULL, 0);
   atomic_store(&gpu_trace_finished, true);
 
   return NULL;

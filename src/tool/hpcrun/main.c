@@ -846,9 +846,10 @@ hpcrun_wait()
 //***************************************************************************
 // process control (via libmonitor)
 //***************************************************************************
+static bool is_part_initialized = false;
 
 void*
-monitor_init_process(int *argc, char **argv, void* data)
+monitor_init_process(int *argc, char **argv, void* data, int init_full)
 {
   char* process_name;
   char  buf[PROC_NAME_LEN];
@@ -872,59 +873,65 @@ monitor_init_process(int *argc, char **argv, void* data)
     putenv("PAMID_COLLECTIVES=0");
 #endif // defined(HOST_SYSTEM_IBM_BLUEGENE)
 
+  if (!is_part_initialized){
   hpcrun_sample_prob_init();
 
-  // FIXME: if the process fork()s before main, then argc and argv
-  // will be NULL in the child here.  MPT on CNL does this.
-  process_name = "unknown";
-  if (argv != NULL && argv[0] != NULL) {
-    process_name = argv[0];
-  }
-  else {
-    int len = readlink("/proc/self/exe", buf, PROC_NAME_LEN - 1);
-    if (len > 1) {
-      buf[len] = 0;
-      process_name = buf;
+    // FIXME: if the process fork()s before main, then argc and argv
+    // will be NULL in the child here.  MPT on CNL does this.
+    process_name = "unknown";
+    if (argv != NULL && argv[0] != NULL) {
+      process_name = argv[0];
     }
+    else {
+      int len = readlink("/proc/self/exe", buf, PROC_NAME_LEN - 1);
+      if (len > 1) {
+        buf[len] = 0;
+        process_name = buf;
+      }
+    }
+
+    hpcrun_set_using_threads(false);
+
+    copy_execname(process_name);
+    hpcrun_files_set_executable(process_name);
+
+    // We initialize the load map and fnbounds before registering sample source.
+    // This is because sample source init (such as PAPI)  may dlopen other libraries,
+    // which will trigger our library monitoring code and fnbound queries
+    hpcrun_initLoadmap();
+
+    // We need to initialize messages related functions and set up measurement directory,
+    // so that we can write vdso and prevent fnbounds print messages to the terminal.
+    messages_init();
+    if (!hpcrun_get_disabled()) {
+      hpcrun_files_set_directory();
+    }
+    messages_logfile_create();
+
+    // must initialize unwind recipe map before initializing fnbounds
+    // because mapping of load modules affects the recipe map.
+    hpcrun_unw_init();
+
+    // We need to save vdso before initializing fnbounds this
+    // is because fnbounds_init will iterate over the load map
+    // and will invoke analysis on vdso
+    hpcrun_save_vdso();
+
+    // init callbacks for each device //Module_ignore_map is here
+    hpcrun_initializer_init();
+
+    // fnbounds must be after module_ignore_map
+    fnbounds_init();
+  #ifndef HPCRUN_STATIC_LINK
+    auditor_exports->mainlib_connected(get_saved_vdso_path());
+  #endif
+
+    control_knob_init();
+    is_part_initialized = true;
   }
-
-  hpcrun_set_using_threads(false);
-
-  copy_execname(process_name);
-  hpcrun_files_set_executable(process_name);
-
-  // We initialize the load map and fnbounds before registering sample source.
-  // This is because sample source init (such as PAPI)  may dlopen other libraries,
-  // which will trigger our library monitoring code and fnbound queries
-  hpcrun_initLoadmap();
-
-  // We need to initialize messages related functions and set up measurement directory,
-  // so that we can write vdso and prevent fnbounds print messages to the terminal.
-  messages_init();
-  if (!hpcrun_get_disabled()) {
-    hpcrun_files_set_directory();
-  }
-  messages_logfile_create();
-
-  // must initialize unwind recipe map before initializing fnbounds
-  // because mapping of load modules affects the recipe map.
-  hpcrun_unw_init();
-
-  // We need to save vdso before initializing fnbounds this
-  // is because fnbounds_init will iterate over the load map
-  // and will invoke analysis on vdso
-  hpcrun_save_vdso();
-
-  // init callbacks for each device //Module_ignore_map is here
-  hpcrun_initializer_init();
-
-  // fnbounds must be after module_ignore_map
-  fnbounds_init();
-#ifndef HPCRUN_STATIC_LINK
-  auditor_exports->mainlib_connected(get_saved_vdso_path());
-#endif
-
-  control_knob_init();
+  
+  if (init_full == false)
+    return data;
 
   hpcrun_registered_sources_init();
 
