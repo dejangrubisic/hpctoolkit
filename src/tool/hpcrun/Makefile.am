@@ -427,6 +427,11 @@ MY_BASE_FILES +=			\
         trampoline/common/trampoline_lazy.c
 endif
 
+
+MY_BASE_FILES =\
+	sample-sources/gpu-metrics-trace.c
+
+
 if OPT_ENABLE_PERF_EVENT
 MY_BASE_FILES +=  \
 	sample-sources/perf/event_custom.c  \

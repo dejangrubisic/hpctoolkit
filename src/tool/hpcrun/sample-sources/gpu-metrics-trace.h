@@ -2,9 +2,6 @@
 
 // * BeginRiceCopyright *****************************************************
 //
-// $HeadURL$
-// $Id$
-//
 // --------------------------------------------------------------------------
 // Part of HPCToolkit (hpctoolkit.org)
 //
@@ -44,68 +41,58 @@
 //
 // ******************************************************* EndRiceCopyright *
 
+#ifndef gpu_metrics_trace_h
+#define gpu_metrics_trace_h
 
-//******************************************************************************
-// File: ss-list.h
-//
-// Purpose: 
-//   This file contains a list of sample sources wrapped by a call to an
-//   unspecified macro. The intended use of this file is to define the
-//   macro, include the file elsewhere one or more times to register the
-//   sample sources. This is not defined as a FORALL macro that applies
-//   a macro to each of the sample source names so that this file can
-//   contain ifdefs if a sample source is unused on a platform.
-//
-//******************************************************************************
 
-#include <include/hpctoolkit-config.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <nvml.h>
+#include <cuda_runtime.h>
+#include <time.h>
+#include <unistd.h>
 
-SAMPLE_SOURCE_DECL_MACRO(ga)
-SAMPLE_SOURCE_DECL_MACRO(io)  
-#ifdef ENABLE_CLOCK_REALTIME
-SAMPLE_SOURCE_DECL_MACRO(itimer)  
-#endif
+//*****************************************************************************
+// local includes
+//*****************************************************************************
 
-#ifdef HPCRUN_SS_LINUX_PERF
-SAMPLE_SOURCE_DECL_MACRO(linux_perf)  
-#endif
+// #include <include/gpu-metric-names.h>
+// #include "gpu-activity.h"
 
-SAMPLE_SOURCE_DECL_MACRO(memleak)  
 
-SAMPLE_SOURCE_DECL_MACRO(none)  
 
-#ifdef HPCRUN_SS_PAPI
-SAMPLE_SOURCE_DECL_MACRO(papi)  
-#endif
+//*****************************************************************************
+// macros
+//*****************************************************************************
 
-// #ifdef HPCRUN_SS_PAPI
-SAMPLE_SOURCE_DECL_MACRO(gpu_metrics_trace)  
-// #endif
 
-SAMPLE_SOURCE_DECL_MACRO(directed_blame)
+typedef enum {
+  POWER, 
+  TEMPERATURE, 
+  UTILIZATION
+}trace_metrics_t;
 
-#ifdef HOST_CPU_x86_64
-SAMPLE_SOURCE_DECL_MACRO(retcnt)
-#endif
 
-#ifdef HPCRUN_SS_PAPI_C_CUPTI
-SAMPLE_SOURCE_DECL_MACRO(papi_c_cupti)
-#endif
+typedef struct trace_metrics_node_t{
+  trace_metrics_t metric;
+  struct trace_metrics_node_t *next;
+}trace_metrics_node_t;
 
-#ifdef HPCRUN_SS_NVIDIA
-SAMPLE_SOURCE_DECL_MACRO(nvidia_gpu)
-#endif
 
-#ifdef HPCRUN_SS_AMD
-SAMPLE_SOURCE_DECL_MACRO(amd_gpu)
-#endif
+typedef struct {
+  unsigned int index;
+  char *name;
+  nvmlDevice_t handle;
+} nvml_device_t;
 
-#ifdef HPCRUN_SS_LEVEL0
-SAMPLE_SOURCE_DECL_MACRO(level0)
-#endif
-#ifndef HPCRUN_STATIC_LINK
-#ifdef HPCRUN_SS_OPENCL
-SAMPLE_SOURCE_DECL_MACRO(opencl)
-#endif
+
+
+
+
+
+
+
+
 #endif
 
