@@ -41,49 +41,40 @@
 //
 // ******************************************************* EndRiceCopyright *
 
-#ifndef gpu_metrics_trace_h
-#define gpu_metrics_trace_h
+//***************************************************************************
+//
+// File:
+//   nvml-api.h
+//
+// Purpose:
+//   interface definitions for wrapper around NVIDIA CUDA layer
+//  
+//***************************************************************************
 
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <hpcrun/gpu/nvidia/nvml-api.h>
-#include <cuda_runtime.h>
-#include <time.h>
-#include <unistd.h>
-
-//*****************************************************************************
-// local includes
-//*****************************************************************************
+#ifndef nvml_api_h
+#define nvml_api_h
 
 
 
 //*****************************************************************************
-// macros
+// nvidia includes
 //*****************************************************************************
 
-
-typedef enum {
-  POWER, 
-  TEMPERATURE, 
-  UTILIZATION
-}trace_metrics_t;
+#include <nvml.h>
 
 
-typedef struct trace_metrics_node_t{
-  trace_metrics_t metric;
-  struct trace_metrics_node_t *next;
-}trace_metrics_node_t;
 
+//*****************************************************************************
+// interface operations
+//*****************************************************************************
 
-typedef struct {
-  unsigned int index;
-  char name[64];
-  nvmlDevice_t handle;
-} nvml_device_t;
+// returns 0 on success
+int 
+nvml_bind
+(
+ void
+);
 
 
 
 #endif
-

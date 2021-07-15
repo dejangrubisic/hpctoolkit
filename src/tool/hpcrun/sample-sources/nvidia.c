@@ -286,6 +286,7 @@ METHOD_FN(thread_init_action)
 {
   TMSG(CUDA, "thread_init_action");
 }
+
 static void
 METHOD_FN(start)
 {

@@ -57,14 +57,16 @@
 
 // #include <hpcrun/cct2metrics.h>
 #include <hpcrun/memory/hpcrun-malloc.h>
+#include <hpcrun/utilities/tokenize.h>
+
 #include "gpu-metrics-trace.h"
 
 #include "simple_oo.h"
 #include "sample_source_obj.h"
 #include "common.h"
 #include "display.h"
-#include "ss_obj.h"
 
+#include "libdl.h"
 
 // #include <hpcrun/safe-sampling.h>
 // #include <hpcrun/thread_data.h>
@@ -79,14 +81,11 @@
 // macros
 //*****************************************************************************
 
-#define MAX_SAMPLES 10000
+#define NVML_POWER "trace_metric=power"
+#define MAX_SAMPLES 100
 #define POLL_TIME_US 10000
 
 
-SS_OBJ_CONSTRUCTOR(gpu_metrics_trace)(void)
-{
-  printf("SS_OBJ_CONSTRUCTOR(gpu_metrics_trace)(void)\n");
-}
 
 //*****************************************************************************
 // private operations
@@ -102,54 +101,7 @@ static unsigned int deviceCount = 0;
 static trace_metrics_node_t *metrics_list;
 static nvml_device_t *gpu_nvml_devices;
 nvmlEnableState_t pmmode;
-static trace_metrics_t trace_metric = POWER;
-
-
-
-
-
-
-/*
-Return a number with a specific meaning. This number needs to be interpreted and handled appropriately.
-*/
-static int 
-getNVMLError(nvmlReturn_t resultToCheck)
-{
-	if (resultToCheck == NVML_ERROR_UNINITIALIZED)
-		return 1;
-	if (resultToCheck == NVML_ERROR_INVALID_ARGUMENT)
-		return 2;
-	if (resultToCheck == NVML_ERROR_NOT_SUPPORTED)
-		return 3;
-	if (resultToCheck == NVML_ERROR_NO_PERMISSION)
-		return 4;
-	if (resultToCheck == NVML_ERROR_ALREADY_INITIALIZED)
-		return 5;
-	if (resultToCheck == NVML_ERROR_NOT_FOUND)
-		return 6;
-	if (resultToCheck == NVML_ERROR_INSUFFICIENT_SIZE)
-		return 7;
-	if (resultToCheck == NVML_ERROR_INSUFFICIENT_POWER)
-		return 8;
-	if (resultToCheck == NVML_ERROR_DRIVER_NOT_LOADED)
-		return 9;
-	if (resultToCheck == NVML_ERROR_TIMEOUT)
-		return 10;
-	if (resultToCheck == NVML_ERROR_IRQ_ISSUE)
-		return 11;
-	if (resultToCheck == NVML_ERROR_LIBRARY_NOT_FOUND)
-		return 12;
-	if (resultToCheck == NVML_ERROR_FUNCTION_NOT_FOUND)
-		return 13;
-	if (resultToCheck == NVML_ERROR_CORRUPTED_INFOROM)
-		return 14;
-	if (resultToCheck == NVML_ERROR_GPU_IS_LOST)
-		return 15;
-	if (resultToCheck == NVML_ERROR_UNKNOWN)
-		return 16;
-
-	return 0;
-}
+// static trace_metrics_t trace_metric = POWER;
 
 
 
@@ -235,7 +187,7 @@ powerPollingFunc
   void *ptr
 )
 {  
-  nvmlReturn_t nvmlResult;
+	nvmlReturn_t nvmlResult;
 	unsigned long long prev_time = 0;
 	nvmlSample_t *buffer = (nvmlSample_t*) malloc(MAX_SAMPLES * sizeof(nvmlSample_t));
 	unsigned int samplesCount;
@@ -243,20 +195,19 @@ powerPollingFunc
 
 	struct timeval tval_start = {0, 0}, tval_new = {0, 0};
 
-    
+
 
 	gettimeofday (&tval_start, NULL);
 	printf("START_TIME = %lu us ================================== \n", tval_start.tv_sec * 1000000L + tval_start.tv_usec);
 
 	prev_time = tval_start.tv_sec * 1000000L + tval_start.tv_usec;
 
-	while (pollThreadStatus)
-	{
+	while (pollThreadStatus){
 		// pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, 0);
 
     for(int i = 0; i < deviceCount; i++){
       
-      nvmlReturn_t nvmlResult = nvmlDeviceGetSamples (gpu_nvml_devices[i].handle, NVML_GPU_UTILIZATION_SAMPLES, prev_time, &sampleValType, &samplesCount, NULL);
+      nvmlResult = nvmlDeviceGetSamples (gpu_nvml_devices[i].handle, NVML_GPU_UTILIZATION_SAMPLES, prev_time, &sampleValType, &samplesCount, NULL);
       if (nvmlResult != NVML_SUCCESS){
         printf("nvmlDeviceGetSamples failed: %d %s\n", nvmlResult, nvmlErrorString(nvmlResult)); exit(-1);
       }
@@ -282,16 +233,16 @@ powerPollingFunc
           // The output file stores power in Watts.
           printf(" | P = %f Watts \n", ( (unsigned int) buffer[j].sampleValue.uiVal / 1000.0));			
         }
-                      
+                
       } // samplesCount
-    
+
     } // deviceCount
 
-		usleep(POLL_TIME_US);
-		
-		// pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
-	}
-	
+    usleep(POLL_TIME_US);
+      
+      // pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, 0);
+  }
+
 	gettimeofday (&tval_new, NULL);
 	printf("END_TIME = %lu us ================================== \n", tval_new.tv_sec * 1000000L + tval_new.tv_usec);
 
@@ -306,10 +257,18 @@ powerPollingFunc
 
 static void
 METHOD_FN(init){
-	unsigned int i;
+  unsigned int i;
   nvmlDevice_t gpu_handle;
   nvmlReturn_t nvmlResult;
   char deviceNameStr[64];
+
+
+#ifndef HPCRUN_STATIC_LINK
+  if (nvml_bind() != DYNAMIC_BINDING_STATUS_OK) {
+    EEMSG("hpcrun: unable to bind to NVIDIA NVML library %s\n", dlerror());
+    monitor_real_exit(-1);
+  }
+#endif
 
 
 	// Initialize nvml.
@@ -391,8 +350,7 @@ METHOD_FN(thread_fini_action)
 
 
 static void
-METHOD_FN(stop){
-  nvmlReturn_t nvmlResult;
+METHOD_FN(stop){  
 	pollThreadStatus = false;
 	pthread_join(powerPollThread, NULL);
 }
@@ -400,6 +358,8 @@ METHOD_FN(stop){
 
 static void
 METHOD_FN(shutdown){
+  nvmlReturn_t nvmlResult;
+
 	nvmlResult = nvmlShutdown();
 	if (NVML_SUCCESS != nvmlResult)
 	{
@@ -414,7 +374,11 @@ METHOD_FN(shutdown){
 static bool
 METHOD_FN(supports_event, const char *ev_str)
 {
-  return true
+#ifndef HPCRUN_STATIC_LINK
+  return hpcrun_ev_is(ev_str, NVML_POWER);
+#else
+  return false;
+#endif
 };
 
 
@@ -422,6 +386,7 @@ METHOD_FN(supports_event, const char *ev_str)
 static void
 METHOD_FN(process_event_list, int lush_metrics)
 {
+  // bind here
 }
 
 
@@ -443,3 +408,13 @@ METHOD_FN(display_events)
 {
   printf("METRIC_TRACE SUPPORTS: *********************\nPOWER\n\n");
 }
+
+/***************************************************************************
+ * object
+ ***************************************************************************/
+
+#define ss_name gpu_metrics_trace
+#define ss_cls SS_HARDWARE
+#define ss_sort_order  70
+
+#include "ss_obj.h"

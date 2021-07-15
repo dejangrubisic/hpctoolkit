@@ -78,9 +78,9 @@ SAMPLE_SOURCE_DECL_MACRO(none)
 SAMPLE_SOURCE_DECL_MACRO(papi)  
 #endif
 
-// #ifdef HPCRUN_SS_PAPI
+#ifdef HPCRUN_SS_METRICS_TRACE
 SAMPLE_SOURCE_DECL_MACRO(gpu_metrics_trace)  
-// #endif
+#endif
 
 SAMPLE_SOURCE_DECL_MACRO(directed_blame)
 

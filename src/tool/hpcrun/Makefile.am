@@ -300,9 +300,10 @@ MY_BASE_FILES =				\
 	sample-sources/blame-shift/blame-map.c   \
 	sample-sources/blame-shift/directed.c    \
 	sample-sources/blame-shift/undirected.c    \
+	sample-sources/gpu-metrics-trace.c \
 	sample-sources/omp-mutex.c      \
 	sample-sources/omp-idle.c       \
-        sample-sources/common.c         \
+	sample-sources/common.c         \
 	sample-sources/display.c		\
 	sample-sources/ga.c		\
 	sample-sources/io.c 		\
@@ -428,8 +429,7 @@ MY_BASE_FILES +=			\
 endif
 
 
-MY_BASE_FILES =\
-	sample-sources/gpu-metrics-trace.c
+MY_CPP_DEFINES  += -DHPCRUN_SS_METRICS_TRACE
 
 
 if OPT_ENABLE_PERF_EVENT
@@ -514,6 +514,7 @@ MY_CUPTI_FILES = sample-sources/nvidia.c	\
 	gpu/nvidia/cubin-id-map.c		\
 	gpu/nvidia/cubin-symbols.c		\
 	gpu/nvidia/cuda-api.c			\
+	gpu/nvidia/nvml-api.c			\
 	gpu/nvidia/cuda-device-map.c		\
 	gpu/nvidia/cupti-activity-translate.c	\
 	gpu/nvidia/cupti-analysis.c		\
